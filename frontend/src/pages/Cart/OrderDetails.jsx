@@ -33,7 +33,7 @@ const OrderDetails = () => {
           <div className="h-auto py-24">
             <div className="w-[90%] mx-auto">
               <div>
-                <p className="heading">Thông tin giao hàng</p>
+                <p className="heading">Thông tin đặt phòng</p>
               </div>
               <div className="headingData">
                 <div className="flex gap-3 ">
