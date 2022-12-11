@@ -19,7 +19,6 @@ const ConfirmOrder = () => {
 
   const totalPrice = subtotal + transactionCharges;
 
-  const address = `${transactionInfo.address}, ${transactionInfo.city}`;
   const proceedToPayment = () => {
     const data = {
       subtotal,
@@ -64,10 +63,6 @@ const ConfirmOrder = () => {
                       <p>Mã đặt phòng: </p>
                       <span className="text-slate-600">{}</span>
                     </div>
-                    {/* <div className="flex gap-3 ">
-                      <p>Địa chỉ: </p>
-                      <span className="text-slate-600">{address}</span>
-                    </div> */}
                   </div>
                 </div>
                 <div className="my-5">
