@@ -1,0 +1,44 @@
+[
+  {
+    "companyName": "G1Hotel",
+    "aboutCompany": "G1Hotel là cửa hàng chuyên cung cấp các phòng linh kiện điện tử như Laptop, PC, chuột máy tính, tai nghe, ... online hàng đầu hiện nay.",
+    "heading": [
+      {
+        "aboutus": "Về chúng tôi",
+        "technical": "Công nghệ",
+        "information": "Thông tin",
+        "account": "Tài khoản"
+      }
+    ],
+    "technical": [
+      { "link": "MongoDB", "path": "/#" },
+      { "link": "ExpressJS", "path": "" },
+      { "link": "ReactJS", "path": "" },
+      { "link": "NodeJS", "path": "" }
+    ],
+    "infoData": [
+      {
+        "link": "Về chúng tôi",
+        "path": "/aboutus"
+      },
+      {
+        "link": "Phòng",
+        "path": "/rooms"
+      }
+    ],
+    "accountInfo": [
+      {
+        "link": "Tài khoản",
+        "path": "/account"
+      },
+      {
+        "link": "Giỏ hàng",
+        "path": "/cart"
+      },
+      {
+        "link": "Đăng nhập",
+        "path": "/login"
+      }
+    ]
+  }
+]
