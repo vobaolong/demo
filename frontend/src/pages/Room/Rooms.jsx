@@ -64,7 +64,7 @@ const Rooms = () => {
             </h1>
 
             <div className="flex flex-row-reverse justify-center">
-              <div className="roomsLayoutStyle">
+              <div className="productsLayoutStyle">
                 {rooms?.length > 0 ? (
                   rooms?.map((room, index) => {
                     return <RoomCard key={index} room={room} />;

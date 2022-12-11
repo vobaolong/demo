@@ -170,5 +170,5 @@ const PrevArrow = styled(ArrowBack)`
 const NextArrow = styled(IoArrowForward)`
   ${ArrowButtons}
   position: absolute;
-  right: -3%;
+  right: -1%;
 `;

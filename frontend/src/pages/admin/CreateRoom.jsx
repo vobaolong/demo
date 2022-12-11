@@ -123,7 +123,7 @@ const CreateRoom = () => {
                 <InputField
                   type="text"
                   name="roomName"
-                  placeholder="Nhập tên phòng *"
+                  placeholder="Vui lòng nhập tên phòng *"
                   Icon={Spellcheck}
                   value={roomName}
                   onChange={(e) => setRoomName(e.target.value)}
@@ -131,7 +131,7 @@ const CreateRoom = () => {
                 <InputField
                   type="number"
                   name="price"
-                  placeholder="Nhập giá phòng *"
+                  placeholder="Vui lòng nhập giá phòng *"
                   Icon={AttachMoney}
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -170,6 +170,7 @@ const CreateRoom = () => {
                     })}
                   </select>
                 </div>
+                {/*  */}
                 <InputField
                   type="number"
                   name="stock"
@@ -188,6 +189,8 @@ const CreateRoom = () => {
                     onChange={(e) => setDescription(e.target.value)}
                     cols="30"
                     rows="5"
+                    id="a"
+                    name="txt"
                   ></textarea>
                 </div>
                 <div className="w-full flex items-center gap-5">

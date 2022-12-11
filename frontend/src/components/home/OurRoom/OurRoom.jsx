@@ -8,7 +8,7 @@ const OurRoom = ({ rooms }) => {
         <h1 className="headingStyle">Phòng tiêu biểu</h1>
 
         <div className="w-[90%] mx-auto">
-          <div className="roomsLayoutStyle">
+          <div className="productsLayoutStyle">
             {rooms?.map((room, index) => {
               return <RoomCard key={index} room={room} />;
             })}
