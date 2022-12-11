@@ -107,7 +107,7 @@ const RoomDetails = () => {
           <MetaData title={`${room.name} | G1Hotel`} />
           <div className="w-full flex justify-center md:w-1/2 md:p-10 overflow-hidden ">
             <MgSlider
-              width="400px"
+              width="600px"
               height="400px"
               slides={room.images && room.images}
             />

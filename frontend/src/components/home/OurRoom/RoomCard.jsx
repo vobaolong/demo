@@ -13,7 +13,7 @@ const RoomCard = ({ room }) => {
   return (
     <Link
       to={`/room/${room._id}`}
-      className="flex flex-col justify-between w-60 h-[400px] m-auto rounded-lg shadow-xl bg-secColor overflow-hidden md:hover:shadow-xl transition-all duration-300 md:hover:scale-105 group decoration-transparent"
+      className="flex flex-col justify-between w-3/5 h-full m-auto rounded-lg shadow-xl bg-secColor overflow-hidden md:hover:shadow-xl transition-all duration-300 md:hover:scale-105 group decoration-transparent"
       title={`Name: ${room.name} \nPrice: $${room.price} \nRating: ${room.ratings} ★`}
     >
       <div className="h-fit overflow-hidden p-2">
