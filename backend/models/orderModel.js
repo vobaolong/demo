@@ -6,14 +6,14 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
+    // address: {
+    //   type: String,
+    //   required: true,
+    // },
+    // city: {
+    //   type: String,
+    //   required: true,
+    // },
     phoneNo: {
       type: Number,
       required: true,
@@ -33,10 +33,10 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      datestart: {
-        type: Date,
-        required: true,
-      },
+      // datestart: {
+      //   type: Date,
+      //   required: true,
+      // },
       image: {
         type: String,
         required: true,

@@ -151,7 +151,7 @@ const ProcessOrder = () => {
                           >
                             {order.orderStatus &&
                             order.orderStatus === "Confirm"
-                              ? "Đã giao hàng"
+                              ? "Đã xác nhận"
                               : "Đang xử lí"}
                           </p>
                         </p>

@@ -5,6 +5,7 @@ const cookiesParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const path = require("path");
+const morgan = require("morgan");
 
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cookiesParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
+app.use(morgan("dev"));
 
 // all routes imports
 const room = require("./routes/roomRoute");

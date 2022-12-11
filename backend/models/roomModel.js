@@ -38,8 +38,6 @@ const roomSchema = mongoose.Schema({
     type: Number,
     required: [true, "Vui lòng nhập số khách tối đa"],
     default: 1,
-    min: [1, "Số lượng khách không được bé hơn 1 người"],
-    max: [5, "Số lượng khách không vượt quá 5 người"],
   },
   stock: {
     type: Number,
