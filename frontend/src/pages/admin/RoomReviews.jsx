@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/user/Button";
 import MetaData from "../../components/layout/MetaData";
-import { Delete, Star } from "@material-ui/icons";
+import { FaTrash, FaStar } from "react-icons/fa";
 import { DELETE_REVIEW_RESET } from "../../constants/roomConstants";
 import InputField from "../../components/user/InputField";
 
@@ -107,7 +107,7 @@ const RoomReviews = () => {
                 deleteReviewHandler(params.getValue(params.id, "id"))
               }
             >
-              <Delete />
+              <FaTrash />
             </button>
           </Fragment>
         );
@@ -153,7 +153,7 @@ const RoomReviews = () => {
                 <InputField
                   type="text"
                   name="username"
-                  Icon={Star}
+                  Icon={FaStar}
                   placeholder="Nhập mã phòng"
                   value={roomId}
                   onChange={(e) => setRoomId(e.target.value)}

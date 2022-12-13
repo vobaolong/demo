@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import MetaData from "../../components/layout/MetaData";
-import { Edit, Delete } from "@material-ui/icons";
+import { FaRegEdit, FaTrash } from "react-icons/fa";
 import SideBar from "../../components/admin/Sidebar";
 import { DELETE_ROOM_RESET } from "../../constants/roomConstants";
 import FormatPrice from "../../components/format";
@@ -82,19 +82,19 @@ const RoomList = () => {
         return (
           <Fragment>
             <Link
-              className="text-green-400 hover:text-green-500 transition-all duration-300"
+              className="text-green-400 mx-5 text-lg hover:text-green-500 transition-all duration-300"
               to={`/admin/room/${params.getValue(params.id, "id")}`}
             >
-              <Edit />
+              <FaRegEdit />
             </Link>
 
             <button
-              className="text-red-400 mx-7 hover:text-red-500 transition-all duration-300"
+              className="text-red-400 mx-5 text-lg hover:text-red-500 transition-all duration-300"
               onClick={() =>
                 deleteRoomHandler(params.getValue(params.id, "id"))
               }
             >
-              <Delete />
+              <FaTrash />
             </button>
           </Fragment>
         );

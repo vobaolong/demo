@@ -5,7 +5,7 @@ import { clearErrors, getAllUsers, deleteUser } from "../../actions/userAction";
 import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import MetaData from "../../components/layout/MetaData";
-import { Edit, Delete } from "@material-ui/icons";
+import { FaRegEdit, FaTrash } from "react-icons/fa";
 import SideBar from "../../components/admin/Sidebar";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 
@@ -64,7 +64,7 @@ const UserList = () => {
     {
       field: "role",
       headerName: "Vai trò",
-      minWidth: 150,
+      minWidth: 120,
       flex: 0.3,
       cellClassName: (params) => {
         return params.getValue(params.id, "role") === "admin"
@@ -75,27 +75,27 @@ const UserList = () => {
 
     {
       field: "actions",
-      flex: 0.3,
       headerName: "Hành động",
-      minWidth: 100,
+      minWidth: 150,
+      flex: 0.3,
       sortable: false,
       renderCell: (params) => {
         return (
           <Fragment>
             <Link
-              className="text-green-400 hover:text-green-500 transition-all duration-300"
+              className="text-green-400 mx-5 text-lg hover:text-green-500 transition-all duration-300"
               to={`/admin/user/${params.getValue(params.id, "id")}`}
             >
-              <Edit />
+              <FaRegEdit />
             </Link>
 
             <button
-              className="text-red-400 mx-7 hover:text-red-500 transition-all duration-300"
+              className="text-red-400 mx-5 text-lg hover:text-red-500 transition-all duration-300"
               onClick={() =>
                 deleteUserHandler(params.getValue(params.id, "id"))
               }
             >
-              <Delete />
+              <FaTrash />
             </button>
           </Fragment>
         );

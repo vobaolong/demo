@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import MetaData from "../../components/layout/MetaData";
-import { Edit, Delete } from "@material-ui/icons";
+import { FaRegEdit, FaTrash } from "react-icons/fa";
 import SideBar from "../../components/admin/Sidebar";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 import FormatPrice from "../../components/format";
@@ -64,16 +64,16 @@ const OrdersList = () => {
       field: "itemsQty",
       headerName: "Số đêm",
       type: "number",
-      minWidth: 150,
-      flex: 0.3,
+      minWidth: 100,
+      flex: 0.2,
     },
 
     {
       field: "amount",
       headerName: "Tổng tiền",
       type: "number",
-      minWidth: 150,
-      flex: 0.3,
+      minWidth: 200,
+      flex: 0.5,
     },
 
     {
@@ -87,19 +87,19 @@ const OrdersList = () => {
         return (
           <Fragment>
             <Link
-              className="text-green-400 hover:text-green-500 transition-all duration-300"
+              className="text-green-400 mx-5 text-lg hover:text-green-500 transition-all duration-300"
               to={`/admin/order/${params.getValue(params.id, "id")}`}
             >
-              <Edit />
+              <FaRegEdit />
             </Link>
 
             <button
-              className="text-red-400 mx-7 hover:text-red-500 transition-all duration-300"
+              className="text-red-400 mx-5 text-lg hover:text-red-500 transition-all duration-300"
               onClick={() =>
                 deleteOrderHandler(params.getValue(params.id, "id"))
               }
             >
-              <Delete />
+              <FaTrash />
             </button>
           </Fragment>
         );

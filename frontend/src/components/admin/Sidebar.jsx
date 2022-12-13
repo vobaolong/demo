@@ -1,10 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { TreeView, TreeItem } from "@material-ui/lab";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { AiOutlineInbox } from "react-icons/ai";
-import { GrAddCircle } from "react-icons/gr";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
+import { FaAngleDown, FaBed, FaListAlt, FaPlusCircle } from "react-icons/fa";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
@@ -20,16 +17,16 @@ const Sidebar = () => {
       </Link>
       <Link className="sidebarLinkStyles border-b-2" to="#">
         <TreeView
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ImportExportIcon />}
+          defaultCollapseIcon={<FaAngleDown />}
+          defaultExpandIcon={<FaBed />}
         >
           <TreeItem nodeId="1" label="Phòng">
             <Link className="sidebarLinkStyles border-b-2" to="/admin/rooms">
-              <TreeItem nodeId="2" label="Tất cả" icon={<AiOutlineInbox />} />
+              <TreeItem nodeId="2" label="Tất cả" icon={<FaListAlt />} />
             </Link>
 
             <Link className="sidebarLinkStyles border-b-2" to="/admin/room">
-              <TreeItem nodeId="3" label="Thêm" icon={<GrAddCircle />} />
+              <TreeItem nodeId="3" label="Thêm" icon={<FaPlusCircle />} />
             </Link>
           </TreeItem>
         </TreeView>
