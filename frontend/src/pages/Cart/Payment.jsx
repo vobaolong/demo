@@ -31,7 +31,7 @@ const Payment = () => {
   const alert = useAlert();
 
   const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100),
+    amount: Math.round(orderInfo.totalPrice * (100 / 23625)),
   };
 
   const order = {
@@ -72,10 +72,6 @@ const Payment = () => {
           billing_details: {
             name: user.name,
             email: user.email,
-            address: {
-              line1: transactionInfo.address,
-              city: transactionInfo.city,
-            },
           },
         },
       });
@@ -103,10 +99,6 @@ const Payment = () => {
       alert.error(err.response.data.message);
     }
   };
-
-  // const paymentHandler = async () => {
-  //   await dispatch(resetCart());
-  // };
 
   useEffect(() => {
     if (error) {

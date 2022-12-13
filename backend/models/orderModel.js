@@ -6,14 +6,6 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    // address: {
-    //   type: String,
-    //   required: true,
-    // },
-    // city: {
-    //   type: String,
-    //   required: true,
-    // },
     phoneNo: {
       type: Number,
       required: true,
@@ -29,14 +21,10 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      quantity: {
+      days: {
         type: Number,
         required: true,
       },
-      // datestart: {
-      //   type: Date,
-      //   required: true,
-      // },
       image: {
         type: String,
         required: true,
@@ -44,6 +32,14 @@ const orderSchema = new mongoose.Schema({
       room: {
         type: mongoose.Schema.ObjectId,
         ref: "Room",
+        required: true,
+      },
+      startDate: {
+        type: Date,
+        required: true,
+      },
+      endDate: {
+        type: Date,
         required: true,
       },
     },
@@ -77,12 +73,6 @@ const orderSchema = new mongoose.Schema({
     default: 0,
     required: true,
   },
-  transactionPrice: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
-
   totalPrice: {
     type: Number,
     default: 0,
@@ -93,7 +83,6 @@ const orderSchema = new mongoose.Schema({
     required: true,
     default: "Processing",
   },
-  deliveredAt: Date,
   createdAt: {
     type: Date,
     default: Date.now(),

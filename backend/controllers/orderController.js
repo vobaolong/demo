@@ -5,23 +5,14 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 // Create new order
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
-  const {
-    transactionInfo,
-    orderItems,
-    paymentInfo,
-    itemsPrice,
-    // vatPrice,
-    transactionPrice,
-    totalPrice,
-  } = req.body;
+  const { transactionInfo, orderItems, paymentInfo, itemsPrice, totalPrice } =
+    req.body;
 
   const order = await Order.create({
     transactionInfo,
     orderItems,
     paymentInfo,
     itemsPrice,
-    // vatPrice,
-    transactionPrice,
     totalPrice,
     paidAt: Date.now(),
     user: req.user._id,
@@ -100,15 +91,11 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
 
   if (req.body.status === "Confirm") {
     order.orderItems.forEach(async (order_) => {
-      await updateStock(order_.room, order_.quantity);
+      await updateStock(order_.room);
     });
   }
 
   order.orderStatus = req.body.status;
-
-  if (req.body.status === "Confirm") {
-    order.deliveredAt = Date.now();
-  }
 
   await order.save({ validateBeforeSave: false });
 
@@ -117,10 +104,10 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-async function updateStock(id, quantity) {
+async function updateStock(id) {
   const room = await Room.findById(id);
 
-  room.stock -= quantity;
+  room.stock--;
   await room.save({ validateBeforeSave: false });
 }
 

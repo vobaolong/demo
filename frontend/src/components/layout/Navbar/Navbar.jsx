@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   AiOutlineSearch,
   AiOutlineUser,
-  AiOutlineShoppingCart,
+  AiOutlineHeart,
   AiOutlineMenu,
 } from "react-icons/ai";
 import CustomIcon from "../../Icons/CustomIcon";
@@ -53,7 +53,7 @@ const Navbar = ({ menuOptions }) => {
             {`${user?.role}` === "admin" ? null : (
               <>
                 <CustomIcon path="/search" Icon={AiOutlineSearch} />
-                <CustomIcon path="/cart" Icon={AiOutlineShoppingCart} />
+                <CustomIcon path="/cart" Icon={AiOutlineHeart} />
                 {cartItems.length === 0 ? null : (
                   <>
                     <p className="w-5 text-xs text-white -ml-7 rounded-full border-2 border-sky-500 pl-1.5">

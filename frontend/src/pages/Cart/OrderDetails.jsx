@@ -10,8 +10,10 @@ import { dolaSymbol } from "../../constants/constants";
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { order, error, loading } = useSelector((state) => state.orderDetails);
+  const { user } = useSelector((state) => state.user);
   const alert = useAlert();
   const params = useParams();
+  console.log(order);
 
   useEffect(() => {
     if (error) {
@@ -21,7 +23,6 @@ const OrderDetails = () => {
 
     dispatch(getOrderDetails(params.id));
   }, [alert, dispatch, error, params.id]);
-
   return (
     <Fragment>
       {loading ? (
@@ -37,23 +38,24 @@ const OrderDetails = () => {
               </div>
               <div className="headingData">
                 <div className="flex gap-3 ">
-                  <p>Tên: </p>
+                  <p>Họ và tên khách hàng: </p>
                   <span className="text-slate-600">
                     {order.user && order.transactionInfo.fullname}
                   </span>
                 </div>
                 <div className="flex gap-3 ">
-                  <p>SĐT: </p>
+                  <p>Số điện thoại: </p>
                   <span className="text-slate-600">
                     {order.user && order.transactionInfo.phoneNo}
                   </span>
                 </div>
                 <div className="flex gap-3 ">
-                  <p>Địa chỉ: </p>
-                  <span className="text-slate-600">
-                    {order.user &&
-                      `${order.transactionInfo.fullname} - ${order.transactionInfo.address}, ${order.transactionInfo.city} `}
-                  </span>
+                  <p>Địa chỉ Email: </p>
+                  <span className="text-slate-600">{user.email}</span>
+                </div>
+                <div className="flex gap-3 ">
+                  <p>Mã đặt phòng: </p>
+                  <span className="text-slate-600">{order._id}</span>
                 </div>
               </div>
               <div className="mt-5">
@@ -72,16 +74,16 @@ const OrderDetails = () => {
                       {order.paymentInfo &&
                       order.paymentInfo.status === "succeeded"
                         ? "Đã thanh toán"
-                        : "Chua thanh toán"}
+                        : "Chưa thanh toán"}
                     </p>
                   </div>
 
                   <div className="flex gap-3">
                     <p>Số tiền: </p>
-                    <span className="text-slate-600">
+                    <b className="text-slate-600">
                       {dolaSymbol}
                       {order.totalPrice && order.totalPrice}
-                    </span>
+                    </b>
                   </div>
                 </div>
               </div>
@@ -113,7 +115,6 @@ const OrderDetails = () => {
                 <div className="headingData">
                   {order.orderItems &&
                     order.orderItems.map((item, index) => {
-                      console.log(order.orderItems);
                       return (
                         <div
                           key={index}
@@ -128,16 +129,19 @@ const OrderDetails = () => {
                             className="capitalize"
                             to={`/room/${item.room}`}
                           >
-                            {item.name}
+                            <span className="text-md font-light">Phòng: </span>
+                            <b>{item.name}</b>
                           </Link>
-                          <span>
-                            {item.quantity} X {dolaSymbol}
-                            {item.price} ={" "}
-                            <b>
-                              {dolaSymbol}
-                              {item.price * item.quantity}
-                            </b>
-                          </span>
+                          <b>
+                            <span className="text-md font-light">
+                              Tổng tiền:{" "}
+                            </span>
+                            {dolaSymbol}
+                            {order.totalPrice}{" "}
+                            <span className="text-sm font-light">
+                              ( {item.days} đêm)
+                            </span>
+                          </b>
                         </div>
                       );
                     })}

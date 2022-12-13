@@ -2,6 +2,7 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { FaMapMarkerAlt, FaPhoneAlt, FaMailBulk } from "react-icons/fa";
 import { useAlert } from "react-alert";
+import MetaData from "../components/layout/MetaData";
 
 const ContactUs = () => {
   const form = useRef();
@@ -28,7 +29,8 @@ const ContactUs = () => {
     alert.success("Gửi tin nhắn thành công");
   };
   return (
-    <div className="">
+    <>
+      <MetaData title={`Liên hệ | G1Hotel`} />
       <div className="h-full flex mt-28 m-10 bg-primaryBlue rounded-3xl py-5 flex-wrap">
         <div className="w-[100%] px-5">
           <h1 className="text-primaryBlue text-3xl font-semibold uppercase tracking-widest mt-5 text-center">
@@ -112,7 +114,7 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

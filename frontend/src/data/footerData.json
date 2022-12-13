@@ -1,7 +1,7 @@
 [
   {
-    "companyName": "G1Hotel",
-    "aboutCompany": "G1Hotel là cửa hàng chuyên cung cấp các phòng linh kiện điện tử như Laptop, PC, chuột máy tính, tai nghe, ... online hàng đầu hiện nay.",
+    "companyName": "G1 Hotel",
+    "aboutCompany": "G1 Hotel là hệ thống quản lý khách sạn trực tuyến, tại đây khách hàng có thể đặt phòng online mà không cần đến tận quầy lễ tân!",
     "heading": [
       {
         "aboutus": "Về chúng tôi",
@@ -32,7 +32,7 @@
         "path": "/account"
       },
       {
-        "link": "Giỏ hàng",
+        "link": "Danh sách phòng",
         "path": "/cart"
       },
       {

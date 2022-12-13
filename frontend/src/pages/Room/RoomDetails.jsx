@@ -7,11 +7,13 @@ import {
 } from "../../actions/roomAction";
 import { useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { DateRange } from "react-date-range";
 import ReviewCard from "../../components/home/ReviewCard/ReviewCard";
 import MetaData from "../../components/layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
 import Loader from "../../components/layout/Loader/Loader";
-import QuantityCardInput from "../../components/Cart/QuantityCardInput";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 import {
   Dialog,
   DialogActions,
@@ -30,9 +32,15 @@ const RoomDetails = () => {
   // getting id from the url
   const { id } = useParams();
 
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const dates = [{ startDate: today, endDate: tomorrow, key: "selection" }];
+
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
+  const [datesReserve, setDatesReserve] = useState(dates);
 
   const { room, loading, error } = useSelector((state) => state.roomDetails);
 
@@ -40,13 +48,29 @@ const RoomDetails = () => {
     (state) => state.newReview
   );
 
-  const [quantity, setQuantity] = useState(1);
-
   const options = {
     size: "large",
     value: room.ratings,
     readOnly: true,
     precision: 0.5,
+  };
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+
+  const days = dayDifference(
+    datesReserve[0].endDate,
+    datesReserve[0].startDate
+  );
+
+  const totalPrice = () => {
+    let total = 0;
+    total = total + room.price * (days === 0 ? 0 : days);
+    return total;
   };
 
   useEffect(() => {
@@ -67,18 +91,16 @@ const RoomDetails = () => {
     dispatch(getRoomDetails(id));
   }, [dispatch, id, error, alert, reviewError, success]);
 
-  const increaseQuantity = () => {
-    if (room.stock <= quantity) return;
-
-    setQuantity(quantity + 1);
-  };
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
-
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(id, quantity));
+    dispatch(
+      addItemsToCart(
+        id,
+        days,
+        datesReserve[0].startDate,
+        datesReserve[0].endDate,
+        totalPrice()
+      )
+    );
     alert.success("Thêm vào danh sách thành công");
   };
 
@@ -86,6 +108,15 @@ const RoomDetails = () => {
     open ? setOpen(false) : setOpen(true);
   };
 
+  const handleChange = (item) => {
+    if (
+      item.selection.endDate.getDate() === item.selection.startDate.getDate()
+    ) {
+      alert.error("Ngày ở tối thiểu 1 ngày");
+    } else {
+      setDatesReserve([item.selection]);
+    }
+  };
   const reviewSubmitHandler = () => {
     const myForm = new FormData();
 
@@ -107,7 +138,7 @@ const RoomDetails = () => {
           <MetaData title={`${room.name} | G1Hotel`} />
           <div className="w-full flex justify-center md:w-1/2 md:p-10 overflow-hidden ">
             <MgSlider
-              width="100%"
+              width="600px"
               height="400px"
               slides={room.images && room.images}
             />
@@ -118,9 +149,6 @@ const RoomDetails = () => {
               <h2 className="text-primaryDarkBlue font-bold text-xl text-center mt-5 md:mt-0 md:text-left capitalize">
                 {room.name}
               </h2>
-              {/* <p className="text-slate-400 font-light text-xm text-center md:text-left">
-                Room # {room._id}
-              </p> */}
             </div>
 
             <div
@@ -134,29 +162,28 @@ const RoomDetails = () => {
             </div>
 
             <div>
-              <h1 className="text-2xl font-bold text-primaryDarkBlue text-center md:text-left">{`$${room.price}/đêm`}</h1>
-
+              <h1 className="text-xl font-bold text-primaryDarkBlue text-center md:text-left">
+                Giá: {`$${room.price}/đêm`}
+              </h1>
               <div className="flex gap-5 my-5 flex-col md:flex-row justify-center md:justify-start">
-                Chọn số đêm
-                <QuantityCardInput
-                  quantity={quantity}
-                  increaseQuantity={increaseQuantity}
-                  decreaseQuantity={decreaseQuantity}
-                />
-                <span>
-                  Ngày nhận phòng
-                  <input type="date" id="date" />
-                </span>
+                <div>
+                  Chọn ngày: <b>{days}</b> ngày
+                  <DateRange
+                    minDate={new Date()}
+                    ranges={datesReserve}
+                    onChange={(item) => handleChange(item)}
+                    moveRangeOnFirstSelection={false}
+                    retainEndDateOnFirstSelection={false}
+                  />
+                </div>
                 <button
                   disabled={room.stock < 1 ? true : false}
                   onClick={addToCartHandler}
-                  className="commonBtnStyle mx-auto md:mx-0 py-2 px-5 w-full sm:w-1/2 md:w-[170px] bg-primaryBlue"
+                  className="commonBtnStyle h-2/5 mx-auto md:mx-0 py-2 px-3 w-full sm:w-1/2 md:w-[170px] bg-primaryBlue"
                 >
                   Thêm vào danh sách
                 </button>
-                <button></button>
               </div>
-
               <p className="border-t-2 border-b-2 py-3 border-slate-300 text-slate-600 font-semibold text-center md:text-left">
                 Trạng thái:{" "}
                 <b

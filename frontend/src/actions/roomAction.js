@@ -33,7 +33,7 @@ import {
 
 // fetching all rooms
 export const getRoom =
-  (keyword = "", currentPage = 1, price = [0, 50000], category, ratings = 0) =>
+  (keyword = "", currentPage = 1, price = [0, 2000], category, ratings = 0) =>
   async (dispatch) => {
     try {
       dispatch({

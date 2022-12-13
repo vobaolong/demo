@@ -170,7 +170,6 @@ const CreateRoom = () => {
                     })}
                   </select>
                 </div>
-                {/*  */}
                 <InputField
                   type="number"
                   name="stock"
@@ -184,13 +183,11 @@ const CreateRoom = () => {
 
                   <textarea
                     className="px-3 py-2 outline-none border-2 w-full"
-                    placeholder="Mô tả phòng *"
+                    placeholder="Vui lòng nhập mô tả phòng *"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     cols="30"
                     rows="5"
-                    id="a"
-                    name="txt"
                   ></textarea>
                 </div>
                 <div className="w-full flex items-center gap-5">

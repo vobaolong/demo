@@ -11,11 +11,8 @@ const ConfirmOrder = () => {
 
   const { transactionInfo, cartItems } = useSelector((state) => state.cart);
 
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.quantity * item.price,
-    0
-  );
-  const transactionCharges = subtotal > 1000 ? 0 : 200;
+  const subtotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+  const transactionCharges = subtotal * (1 / 10);
 
   const totalPrice = subtotal + transactionCharges;
 
@@ -59,10 +56,6 @@ const ConfirmOrder = () => {
                         {transactionInfo.phoneNo}
                       </span>
                     </div>
-                    <div className="flex gap-3 ">
-                      <p>Mã đặt phòng: </p>
-                      <span className="text-slate-600">{}</span>
-                    </div>
                   </div>
                 </div>
                 <div className="my-5">
@@ -87,9 +80,8 @@ const ConfirmOrder = () => {
                           </Link>
                           <b>
                             {dolaSymbol}
-                            {item.price * item.quantity} (
-                            <span className="text-sm">{item.quantity} đêm</span>
-                            )
+                            {item.totalPrice} (
+                            <span className="text-sm">{item.days} đêm</span>)
                           </b>
                         </div>
                       );
@@ -117,7 +109,7 @@ const ConfirmOrder = () => {
 
                   <div className="flex justify-between py-5 border-t-2">
                     <p>
-                      <b>Tổng: </b>
+                      <b>Tổng giá: </b>
                     </p>
                     <span className="font-bold">
                       {dolaSymbol}
@@ -125,7 +117,7 @@ const ConfirmOrder = () => {
                     </span>
                   </div>
 
-                  <SlideableBtn onClick={proceedToPayment} label="Tiếp tục" />
+                  <SlideableBtn onClick={proceedToPayment} label="Xác nhận" />
                 </div>
               </div>
             </div>

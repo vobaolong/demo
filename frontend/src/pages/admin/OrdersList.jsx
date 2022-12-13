@@ -69,7 +69,7 @@ const OrdersList = () => {
 
     {
       field: "amount",
-      headerName: "Tổng giá",
+      headerName: "Tổng tiền",
       type: "number",
       minWidth: 150,
       flex: 0.3,

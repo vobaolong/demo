@@ -6,7 +6,7 @@ import Loader from "../../components/layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import MetaData from "../../components/layout/MetaData";
-import { Launch } from "@material-ui/icons";
+import { Visibility } from "@material-ui/icons";
 
 const MyOrders = () => {
   const alert = useAlert();
@@ -40,7 +40,7 @@ const MyOrders = () => {
     },
     {
       field: "itemsQty",
-      headerName: "Số đêm",
+      headerName: "Số phòng",
       type: "number",
       minWidth: 150,
       flex: 0.3,
@@ -48,7 +48,7 @@ const MyOrders = () => {
 
     {
       field: "amount",
-      headerName: "Tổng giá",
+      headerName: "Tổng tiền",
       type: "number",
       minWidth: 270,
       flex: 0.5,
@@ -63,10 +63,10 @@ const MyOrders = () => {
       renderCell: (params) => {
         return (
           <Link
-            className="text-slate-500 hover:text-red-500 transition-all duration-500"
+            className="text-slate-500 hover:text-green-500 transition-all duration-500 px-5"
             to={`/order/${params.getValue(params.id, "id")}`}
           >
-            <Launch />
+            <Visibility />
           </Link>
         );
       },
@@ -90,7 +90,7 @@ const MyOrders = () => {
 
   return (
     <Fragment>
-      <MetaData title={`Đơn đặt phòng của ${user.name}`} />
+      <MetaData title={`Đơn đặt phòng ${user.name}`} />
 
       {loading ? (
         <Loader />
@@ -109,7 +109,7 @@ const MyOrders = () => {
             className="bg-primaryBlue py-3
           mt-10 text-center text-xl text-white rounded-b-md"
           >
-            {user.name} Orders
+            Danh sách đơn đặt phòng của {user.name}
           </p>
         </div>
       )}

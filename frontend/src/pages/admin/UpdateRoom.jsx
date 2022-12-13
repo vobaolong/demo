@@ -9,12 +9,11 @@ import { useAlert } from "react-alert";
 import Button from "../../components/user/Button";
 import MetaData from "../../components/layout/MetaData";
 import {
+  AccountTree,
   Description,
   Storage,
   Spellcheck,
   AttachMoney,
-  Group,
-  KingBed,
 } from "@material-ui/icons";
 import SideBar from "../../components/admin/Sidebar";
 import { UPDATE_ROOM_RESET } from "../../constants/roomConstants";
@@ -40,8 +39,7 @@ const UpdateRoom = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [maxCount, setMaxCount] = useState(0);
-  const [stock, setStock] = useState(0);
+  const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -53,7 +51,6 @@ const UpdateRoom = () => {
     "Phòng Suite (SUT)",
     "Connecting Room",
   ];
-  const maxCountPeople = ["1", "2", "3", "4"];
 
   useEffect(() => {
     if (room && room._id !== roomId) {
@@ -94,8 +91,7 @@ const UpdateRoom = () => {
     myForm.set("price", price);
     myForm.set("description", description);
     myForm.set("category", category);
-    myForm.set("stock", stock);
-    myForm.set("maxcount", maxCount);
+    myForm.set("stock", Stock);
 
     images.forEach((image) => {
       myForm.append("images", image);
@@ -165,9 +161,20 @@ const UpdateRoom = () => {
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
-
                 <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
-                  <KingBed className="text-xl text-white mx-2" />
+                  <Description className="text-xl text-white mx-2" />
+
+                  <textarea
+                    className="px-3 py-2 outline-none border-2 w-full"
+                    placeholder="Vui lòng nhập mô tả phòng"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    cols="30"
+                    rows="1"
+                  ></textarea>
+                </div>
+                <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
+                  <AccountTree className="text-xl text-white mx-2" />
                   <select
                     value={category}
                     className="px-3 py-2 outline-none border-2 w-full"
@@ -183,45 +190,15 @@ const UpdateRoom = () => {
                     })}
                   </select>
                 </div>
-                <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
-                  <Group className="text-xl text-white mx-2" />
-                  <select
-                    className="px-3 py-2 outline-none border-2 w-full"
-                    onChange={(e) => setMaxCount(e.target.value)}
-                  >
-                    <option value="">Vui lòng chọn số khách tối đa *</option>
-                    {maxCountPeople.map((maxCount, index) => {
-                      return (
-                        <option key={index} value={maxCount}>
-                          {maxCount}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
                 <InputField
                   type="number"
                   name="stock"
                   placeholder="Vui lòng nhập số lượng phòng"
                   Icon={Storage}
-                  value={stock}
+                  value={Stock}
                   onChange={(e) => setStock(e.target.value)}
                   min={0}
                 />
-                <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
-                  <Description className="text-xl text-white mx-2" />
-
-                  <textarea
-                    className="px-3 py-2 outline-none border-2 w-full"
-                    placeholder="Vui lòng nhập mô tả phòng"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    cols="30"
-                    rows="5"
-                    id="a"
-                    name="txt"
-                  ></textarea>
-                </div>
                 <div className="w-full flex items-center gap-5">
                   <input
                     className="avatarChoose w-full border-2 rounded-lg "

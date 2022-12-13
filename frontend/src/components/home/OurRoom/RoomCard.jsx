@@ -34,7 +34,7 @@ const RoomCard = ({ room }) => {
           {room.name}
         </p>
 
-        <span className="text-red-600 font-semibold">${room.price}</span>
+        <span className="text-red-600 font-semibold">${room.price}/đêm</span>
       </div>
     </Link>
   );

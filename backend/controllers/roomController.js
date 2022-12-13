@@ -125,7 +125,7 @@ exports.getRoomDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Get all rooms
 exports.getAllRooms = catchAsyncErrors(async (req, res, next) => {
-  const resultPerPage = 8;
+  const resultPerPage = 9;
   const roomsCount = await Room.countDocuments();
   const apiFeature = new ApiFeatures(Room.find(), req.query).search().filter();
 

@@ -27,9 +27,7 @@ const RoomReviews = () => {
     (state) => state.review
   );
 
-  const { error, reviews, loading } = useSelector(
-    (state) => state.roomReviews
-  );
+  const { error, reviews, loading } = useSelector((state) => state.roomReviews);
 
   useEffect(() => {
     if (roomId.length === 24) {

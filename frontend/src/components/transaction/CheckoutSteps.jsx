@@ -1,8 +1,8 @@
 import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import {
-  AccountBalance,
+  PaymentOutlined,
   LibraryAddCheck,
-  LocalShipping,
+  PermDeviceInformationRounded,
 } from "@material-ui/icons";
 import React from "react";
 
@@ -10,7 +10,7 @@ const CheckoutSteps = ({ activeStep }) => {
   const steps = [
     {
       label: <Typography>Thông tin người đặt</Typography>,
-      icon: <LocalShipping />,
+      icon: <PermDeviceInformationRounded />,
     },
     {
       label: <Typography>Xác nhận đơn đặt phòng</Typography>,
@@ -18,7 +18,7 @@ const CheckoutSteps = ({ activeStep }) => {
     },
     {
       label: <Typography>Thanh toán</Typography>,
-      icon: <AccountBalance />,
+      icon: <PaymentOutlined />,
     },
   ];
 
