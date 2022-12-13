@@ -36,7 +36,7 @@ const HomePage = () => {
           <Banner jsonData={companydata} />
 
           {/* our rooms */}
-          <OurRoom rooms={rooms.slice(0, 8)} />
+          <OurRoom rooms={rooms.slice(0, 6)} />
         </Fragment>
       )}
     </div>

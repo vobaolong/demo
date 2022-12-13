@@ -4,7 +4,6 @@ import MetaData from "../../components/layout/MetaData";
 import { Link, useParams } from "react-router-dom";
 import SideBar from "../../components/admin/Sidebar";
 import { useAlert } from "react-alert";
-import { dolaSymbol } from "../../constants/constants";
 import {
   getOrderDetails,
   clearErrors,
@@ -14,6 +13,7 @@ import Loader from "../../components/layout/Loader/Loader";
 import Button from "../../components/user/Button";
 import { AccountTree } from "@material-ui/icons";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
+import FormatPrice from "../../components/format";
 
 const ProcessOrder = () => {
   const alert = useAlert();
@@ -21,6 +21,7 @@ const ProcessOrder = () => {
   const params = useParams();
 
   const { order, error, loading } = useSelector((state) => state.orderDetails);
+  console.log(order);
   const {
     error: updateError,
     isUpdated,
@@ -30,9 +31,7 @@ const ProcessOrder = () => {
 
   const updateProcessOrder = (e) => {
     e.preventDefault();
-
     const myForm = new FormData();
-
     myForm.set("status", status);
 
     dispatch(updateOrder(params.id, myForm));
@@ -82,7 +81,7 @@ const ProcessOrder = () => {
                     <p className="text-xl font-bold">Thông tin người đặt</p>
                     <div className="headingData">
                       <div className="flex gap-3 ">
-                        <p>Tên: </p>
+                        <p>Họ và tên: </p>
                         <span className="text-slate-600">
                           {order.transactionInfo &&
                             order.transactionInfo.fullname}
@@ -93,13 +92,6 @@ const ProcessOrder = () => {
                         <span className="text-slate-600">
                           {order.transactionInfo &&
                             order.transactionInfo.phoneNo}
-                        </span>
-                      </div>
-                      <div className="flex gap-3 ">
-                        <p>Địa chỉ: </p>
-                        <span className="text-slate-600">
-                          {order.transactionInfo &&
-                            `${order.transactionInfo.address}, ${order.transactionInfo.city}`}
                         </span>
                       </div>
                     </div>
@@ -128,8 +120,7 @@ const ProcessOrder = () => {
                       <div className="flex gap-3">
                         <p>Số tiền: </p>
                         <span className="text-slate-600">
-                          {dolaSymbol}
-                          {order.totalPrice && order.totalPrice}
+                          {order.totalPrice && FormatPrice(order.totalPrice)}
                         </span>
                       </div>
                     </div>
@@ -160,32 +151,39 @@ const ProcessOrder = () => {
                   </div>
 
                   <div className="my-5">
-                    <p className="text-xl font-bold">Phòng: </p>
+                    <p className="text-xl font-bold">
+                      Chi tiết đơn đặt phòng:{" "}
+                    </p>
                     <div>
                       {order.orderItems?.map((item, index) => {
                         return (
                           <div
                             key={index}
-                            className="flex px-5 md:px-10 gap-x-7 mt-3 items-center"
+                            className="flex gap-5 mt-3 items-center border border-teal-500 rounded-md p-2 mr-2 justify-between"
                           >
                             <img
-                              className="w-[10vmax] md:w-[5vmax]"
+                              className="w-[20vmax] md:w-[10vmax] rounded-sm"
                               src={item.image}
                               alt="Room"
                             />
-                            <Link
-                              className="capitalize"
-                              to={`/room/${item.room}`}
-                            >
-                              {item.name}
-                            </Link>
-                            <span>
-                              {item.quantity} X {dolaSymbol}
-                              {item.price} ={" "}
-                              <b>
-                                {dolaSymbol}
-                                {item.price * item.quantity}
-                              </b>
+                            <span className="text-md ">
+                              Tên phòng:{" "}
+                              <Link
+                                className="capitalize w-[10vmax] font-bold"
+                                to={`/room/${item.room}`}
+                              >
+                                {item.name}
+                              </Link>
+                            </span>
+
+                            <span className="text-md font-light text-center">
+                              Tổng tiền:{" "}
+                              <p className="text-sm font-bold">
+                                {FormatPrice(order.totalPrice)}{" "}
+                                <b className="text-sm font-light right-2">
+                                  ({item.days} đêm)
+                                </b>
+                              </p>
                             </span>
                           </div>
                         );

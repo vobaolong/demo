@@ -27,7 +27,7 @@ const Rooms = () => {
     (state) => state.rooms
   );
 
-  const [price, setPrice] = useState([0, 2000]);
+  const [price, setPrice] = useState([0, 5000000]);
   const [category, setCategory] = useState("");
   const [ratings, setRatings] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,10 +58,7 @@ const Rooms = () => {
         <Fragment>
           <MetaData title={`Phòng | G1Hotel`} />
           <div className="h-auto w-[100%] py-24 md:px-10 ">
-            <h1 className="headingStyle">
-              <div className="headingStylesDiv" />
-              Phòng
-            </h1>
+            <h1 className="headingStyle mplus uppercase">Phòng</h1>
 
             <div className="flex flex-row-reverse justify-center">
               <div className="productsLayoutStyle">

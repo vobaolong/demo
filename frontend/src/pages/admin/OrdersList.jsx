@@ -12,6 +12,7 @@ import MetaData from "../../components/layout/MetaData";
 import { Edit, Delete } from "@material-ui/icons";
 import SideBar from "../../components/admin/Sidebar";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
+import FormatPrice from "../../components/format";
 
 const OrdersList = () => {
   const dispatch = useDispatch();
@@ -117,7 +118,7 @@ const OrdersList = () => {
           order.orderStatus && order.orderStatus === "Confirm"
             ? "Đã xác nhận"
             : "Đang xử lí",
-        amount: order.totalPrice,
+        amount: FormatPrice(order.totalPrice),
       });
     });
 

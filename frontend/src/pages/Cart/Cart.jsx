@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoHeartDislikeSharp } from "react-icons/io5";
 import MetaData from "../../components/layout/MetaData";
 import { useAlert } from "react-alert";
+import FormatPrice from "../../components/format";
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -82,7 +83,9 @@ const Cart = () => {
                       {dateFormat(item.endDate)}
                     </div>
                     <div className="flex justify-end items-center px-5">
-                      <p className="font-medium">{`$${item.totalPrice}`}</p>
+                      <p className="font-medium">{`${FormatPrice(
+                        item.totalPrice
+                      )}`}</p>
                     </div>
                   </div>
                 );
@@ -100,8 +103,10 @@ const Cart = () => {
               <div className="grid place-items-end w-[90%] mx-auto flex ">
                 <div className="flex justify-between px-5 py-5 border-t-4 border-primaryDarkBlue w-full md:w-1/2 lg:w-1/3 ">
                   <p className="font-bold text-[1.2em] ">Thành tiền</p>
-                  <p className="font-bold text-[1em]">{`$
-                  ${cartItems.reduce((acc, item) => acc + item.totalPrice, 0)}
+                  <p className="font-bold text-[1em]">{`
+                  ${FormatPrice(
+                    cartItems.reduce((acc, item) => acc + item.totalPrice, 0)
+                  )}
 
                 `}</p>
                 </div>
@@ -109,7 +114,6 @@ const Cart = () => {
                   <button
                     onClick={checkoutHandler}
                     className="bg-primaryBlue w-full hover:shadow-lg py-2 rounded-md text-white mt-10 transition-all duration-500 hover:scale-105"
-                    // disabled={item.days === 0 ? true : false}
                   >
                     Đặt phòng
                   </button>

@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import MetaData from "../../components/layout/MetaData";
 import { Link, useNavigate } from "react-router-dom";
 import CheckoutSteps from "../../components/transaction/CheckoutSteps";
-import { dolaSymbol } from "../../constants/constants";
 import SlideableBtn from "../../components/layout/Buttons/SlideableBtn";
+import FormatPrice from "../../components/format";
 
 const ConfirmOrder = () => {
   const navigate = useNavigate();
@@ -79,8 +79,7 @@ const ConfirmOrder = () => {
                             {item.name}
                           </Link>
                           <b>
-                            {dolaSymbol}
-                            {item.totalPrice} (
+                            {FormatPrice(item.totalPrice)} (
                             <span className="text-sm">{item.days} đêm</span>)
                           </b>
                         </div>
@@ -99,11 +98,15 @@ const ConfirmOrder = () => {
                   <div className="flex flex-col gap-5 my-3">
                     <div className="flex justify-between">
                       <p>Tổng: </p>
-                      <span className="text-slate-500">{`${dolaSymbol}${subtotal}`}</span>
+                      <span className="text-slate-500">{`${FormatPrice(
+                        subtotal
+                      )}`}</span>
                     </div>
                     <div className="flex justify-between">
                       <p>VAT: </p>
-                      <span className="text-slate-500">{`${dolaSymbol}${transactionCharges}`}</span>
+                      <span className="text-slate-500">{`${FormatPrice(
+                        transactionCharges
+                      )}`}</span>
                     </div>
                   </div>
 
@@ -111,10 +114,7 @@ const ConfirmOrder = () => {
                     <p>
                       <b>Tổng giá: </b>
                     </p>
-                    <span className="font-bold">
-                      {dolaSymbol}
-                      {totalPrice}
-                    </span>
+                    <span className="font-bold">{FormatPrice(totalPrice)}</span>
                   </div>
 
                   <SlideableBtn onClick={proceedToPayment} label="Xác nhận" />

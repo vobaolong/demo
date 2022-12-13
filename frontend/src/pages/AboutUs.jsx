@@ -7,8 +7,8 @@ const AboutUs = () => {
       <MetaData title={`Về chúng tôi | G1Hotel`} />
       <div className="h-full flex md:flex-row sm:flex-col mt-28 m-10 bg-primaryBlue rounded-3xl py-5">
         <div class="md:w-[50%] sm:w-[100%] px-5">
-          <h1 class="text-primaryBlue text-3xl text-center font-semibold uppercase tracking-widest my-5">
-            Vai trò và sứ mệnh
+          <h1 className="mplus headingStyle text-primaryBlue text-center font-semibold uppercase tracking-widest my-5 text-3xl">
+            Vai trò và xứ mệnh
           </h1>
           <p class="mt-5 text-lightGray mx-10 text-justify leading-6">
             <strong>G1 Hotel</strong> là hệ thống quản lý khách sạn trực tuyến,

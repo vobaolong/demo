@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@material-ui/lab";
+import FormatPrice from "../../format";
 
 const RoomCard = ({ room }) => {
   const options = {
@@ -14,7 +15,10 @@ const RoomCard = ({ room }) => {
     <Link
       to={`/room/${room._id}`}
       className="flex flex-col justify-between w-80 h-[370px] m-auto rounded-lg shadow-xl bg-secColor overflow-hidden md:hover:shadow-xl transition-all duration-300 md:hover:scale-105 group decoration-transparent"
-      title={`Tên phòng: ${room.name} \nGiá: $${room.price}/đêm \nĐánh giá: ${room.ratings} ★`}
+      title={`
+      Tên phòng: ${room.name} \nGiá: ${FormatPrice(
+        room.price
+      )}/đêm \nĐánh giá: ${room.ratings} ★`}
     >
       <div className="h-fit overflow-hidden p-2 h-3/5">
         <img
@@ -30,11 +34,13 @@ const RoomCard = ({ room }) => {
           <span className="text-gray-500">({room.numOfReviews} đánh giá)</span>
         </div>
 
-        <p className="text-secondaryDark font-bold text-md capitalize line-clamp-2">
+        <p className="text-secondaryDark font-bold text-md! capitalize line-clamp-2">
           {room.name}
         </p>
 
-        <span className="text-red-600 font-semibold">${room.price}/đêm</span>
+        <span className="text-red-600 font-semibold bottom-1">
+          {FormatPrice(room.price)}/đêm
+        </span>
       </div>
     </Link>
   );

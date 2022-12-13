@@ -33,7 +33,7 @@ const ContactUs = () => {
       <MetaData title={`Liên hệ | G1Hotel`} />
       <div className="h-full flex mt-28 m-10 bg-primaryBlue rounded-3xl py-5 flex-wrap">
         <div className="w-[100%] px-5">
-          <h1 className="text-primaryBlue text-3xl font-semibold uppercase tracking-widest mt-5 text-center">
+          <h1 className="mplus headingStyle text-primaryBlue text-3xl font-semibold uppercase tracking-widest mt-5 text-center">
             Thông tin liên lạc
           </h1>
         </div>

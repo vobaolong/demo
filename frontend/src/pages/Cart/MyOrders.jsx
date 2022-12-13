@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import MetaData from "../../components/layout/MetaData";
 import { Visibility } from "@material-ui/icons";
+import FormatPrice from "../../components/format";
 
 const MyOrders = () => {
   const alert = useAlert();
@@ -84,7 +85,7 @@ const MyOrders = () => {
           item.orderStatus && item.orderStatus === "Confirm"
             ? "Đã xác nhận"
             : "Đang xử lý",
-        amount: item.totalPrice,
+        amount: FormatPrice(item.totalPrice),
       });
     });
 

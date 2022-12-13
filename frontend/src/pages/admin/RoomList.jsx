@@ -12,6 +12,7 @@ import MetaData from "../../components/layout/MetaData";
 import { Edit, Delete } from "@material-ui/icons";
 import SideBar from "../../components/admin/Sidebar";
 import { DELETE_ROOM_RESET } from "../../constants/roomConstants";
+import FormatPrice from "../../components/format";
 
 const RoomList = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const RoomList = () => {
 
     {
       field: "price",
-      headerName: "Giá/đêm",
+      headerName: "Giá phòng/đêm",
       type: "number",
       minWidth: 120,
       flex: 0.2,
@@ -108,7 +109,7 @@ const RoomList = () => {
       rows.push({
         id: item._id,
         stock: item.stock,
-        price: `$${item.price}`,
+        price: `${FormatPrice(item.price)}`,
         name: item.name,
       });
     });

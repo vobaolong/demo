@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 import Loader from "../../components/layout/Loader/Loader";
 import { useAlert } from "react-alert";
-import { dolaSymbol } from "../../constants/constants";
+import FormatPrice from "../../components/format";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
@@ -81,8 +81,7 @@ const OrderDetails = () => {
                   <div className="flex gap-3">
                     <p>Số tiền: </p>
                     <b className="text-slate-600">
-                      {dolaSymbol}
-                      {order.totalPrice && order.totalPrice}
+                      {FormatPrice(order?.totalPrice)}
                     </b>
                   </div>
                 </div>
@@ -136,10 +135,9 @@ const OrderDetails = () => {
                             <span className="text-md font-light">
                               Tổng tiền:{" "}
                             </span>
-                            {dolaSymbol}
-                            {order.totalPrice}{" "}
+                            {FormatPrice(order.totalPrice)}{" "}
                             <span className="text-sm font-light">
-                              ( {item.days} đêm)
+                              ({item.days} đêm)
                             </span>
                           </b>
                         </div>

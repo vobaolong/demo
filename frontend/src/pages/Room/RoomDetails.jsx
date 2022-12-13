@@ -24,6 +24,7 @@ import {
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/roomConstants";
 import MgSlider from "../../components/Rooms/MgSlider";
+import FormatPrice from "../../components/format";
 
 const RoomDetails = () => {
   const dispatch = useDispatch();
@@ -138,8 +139,8 @@ const RoomDetails = () => {
           <MetaData title={`${room.name} | G1Hotel`} />
           <div className="w-full flex justify-center md:w-1/2 md:p-10 overflow-hidden ">
             <MgSlider
-              width="600px"
-              height="400px"
+              width="90%"
+              height="50vh"
               slides={room.images && room.images}
             />
           </div>
@@ -162,8 +163,12 @@ const RoomDetails = () => {
             </div>
 
             <div>
-              <h1 className="text-xl font-bold text-primaryDarkBlue text-center md:text-left">
-                Giá: {`$${room.price}/đêm`}
+              <h1 className="text-md font-normaltext-primaryDarkBlue text-center md:text-left">
+                Giá phòng:
+                <b className="text-red-500 ml-2 text-lg">
+                  {`${FormatPrice(room.price)}`}
+                </b>
+                /đêm
               </h1>
               <div className="flex gap-5 my-5 flex-col md:flex-row justify-center md:justify-start">
                 <div>
@@ -214,10 +219,7 @@ const RoomDetails = () => {
       )}
 
       <div className="py-5">
-        <h1 className="headingStyle uppercase">
-          <div className="headingStylesDiv" />
-          Đánh giá
-        </h1>
+        <h1 className="mplus headingStyle uppercase">Đánh giá</h1>
 
         <Dialog
           aria-label="simple-dialog-title"

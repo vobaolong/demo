@@ -8,12 +8,12 @@ const Banner = ({ jsonData }) => {
   return (
     <div className="w-[100%] h-screen flex justify-center items-center bg-primaryBlue customBanner">
       <div className="flex justify-center flex-col items-center px-8 md:px-0">
-        <h1 className="text-2xl font-bold text-lightGray text-center">
+        <h1 className="mplus text-2xl font-bold text-lightGray text-center">
           Chào mừng đến với {"  "}
           <span className="text-primaryBlue">{data.companyName}</span>
         </h1>
 
-        <p className="text-4xl md:text-5xl uppercase mt-10 text-primaryBlue text-center leading-relaxed">
+        <p className="mplus text-4xl md:text-5xl uppercase mt-10 text-primaryBlue text-center leading-relaxed font-bold">
           TÌM PHÒNG{" "}
           <span className="text-lightGray border-b-4 border-primaryBlue">
             TUYỆT VỜI

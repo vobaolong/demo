@@ -9,7 +9,7 @@ import { CategoryScale } from "chart.js";
 import { getAdminRooms } from "../../actions/roomAction";
 import { getAllOrders } from "../../actions/orderAction";
 import { getAllUsers } from "../../actions/userAction";
-import { dolaSymbol } from "../../constants/constants";
+import FormatPrice from "../../components/format";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -90,8 +90,8 @@ const Dashboard = () => {
         <div className="pt-10">
           <div className="text-center text-xl py-5 text-white font-medium bg-secondaryDark">
             <p>
-              Tổng doanh thu <br /> {dolaSymbol}
-              {totalAmount}
+              Tổng doanh thu <br />
+              {FormatPrice(totalAmount)}
             </p>
           </div>
 
