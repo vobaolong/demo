@@ -41,7 +41,7 @@ const CreateRoom = () => {
     "Connecting Room",
   ];
 
-  const maxCountPeople = ["1", "2", "3", "4"];
+  const maxCountPeople = ["1", "2", "3", "4", "5"];
 
   useEffect(() => {
     if (error) {
@@ -108,7 +108,7 @@ const CreateRoom = () => {
 
         <div className="dashboardRightBoxStyle">
           <div className="mb-5">
-            <p className="upper text-center text-2xl font-bold text-gray-400">
+            <p className="uppercase mplus text-center text-2xl font-bold text-gray-400">
               Thêm phòng
             </p>
           </div>
@@ -143,7 +143,7 @@ const CreateRoom = () => {
                     className="px-3 py-2 outline-none border-2 w-full"
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value="">Vui lòng chọn danh mục *</option>
+                    <option value="">Vui lòng chọn loại phòng *</option>
                     {categories.map((category, index) => {
                       return (
                         <option key={index} value={category}>

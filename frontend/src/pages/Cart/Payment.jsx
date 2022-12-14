@@ -38,7 +38,7 @@ const Payment = () => {
     transactionInfo,
     orderItems: cartItems,
     itemsPrice: orderInfo.subtotal,
-    transactionPrice: orderInfo.transactionCharges,
+    taxPrice: orderInfo.transactionCharges,
     totalPrice: orderInfo.totalPrice,
   };
 

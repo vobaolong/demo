@@ -8,8 +8,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Vui lòng tên của bạn"],
-    maxLength: [30, "Tên không vượt quá 30 ký tự"],
-    minLength: [5, "Tên phải dài hơn 5 ký tự"],
+    maxLength: [15, "Tên không vượt quá 15 ký tự"],
   },
   email: {
     type: String,

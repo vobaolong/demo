@@ -27,6 +27,7 @@ import MgSlider from "../../components/Rooms/MgSlider";
 import FormatPrice from "../../components/format";
 
 const RoomDetails = () => {
+  window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -165,9 +166,9 @@ const RoomDetails = () => {
             <div>
               <h1 className="text-md font-normaltext-primaryDarkBlue text-center md:text-left">
                 Giá phòng:
-                <b className="text-red-500 ml-2 text-lg">
-                  {`${FormatPrice(room.price)}`}
-                </b>
+                <b className="text-red-500 ml-2 text-lg">{`${
+                  room.price && FormatPrice(room.price)
+                }`}</b>
                 /đêm
               </h1>
               <div className="flex gap-5 my-5 flex-col md:flex-row justify-center md:justify-start">

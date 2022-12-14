@@ -9,11 +9,12 @@ import { useAlert } from "react-alert";
 import Button from "../../components/user/Button";
 import MetaData from "../../components/layout/MetaData";
 import {
-  AccountTree,
   Description,
   Storage,
   Spellcheck,
   AttachMoney,
+  Group,
+  KingBed,
 } from "@material-ui/icons";
 import SideBar from "../../components/admin/Sidebar";
 import { UPDATE_ROOM_RESET } from "../../constants/roomConstants";
@@ -40,6 +41,7 @@ const UpdateRoom = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [Stock, setStock] = useState(0);
+  const [maxCount, setMaxCount] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -51,6 +53,7 @@ const UpdateRoom = () => {
     "Phòng Suite (SUT)",
     "Connecting Room",
   ];
+  const maxCountPeople = ["1", "2", "3", "4", "5"];
 
   useEffect(() => {
     if (room && room._id !== roomId) {
@@ -92,6 +95,7 @@ const UpdateRoom = () => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("stock", Stock);
+    myForm.set("maxcount", maxCount);
 
     images.forEach((image) => {
       myForm.append("images", image);
@@ -133,8 +137,8 @@ const UpdateRoom = () => {
 
         <div className="dashboardRightBoxStyle">
           <div className="mb-5">
-            <p className="upper text-center text-2xl font-bold text-gray-400">
-              CẬP NHẬT phòng
+            <p className="uppercase mplus text-center text-2xl font-bold text-gray-400">
+              cập nhật phòng
             </p>
           </div>
 
@@ -148,7 +152,7 @@ const UpdateRoom = () => {
                 <InputField
                   type="text"
                   name="roomName"
-                  placeholder="Vui lòng nhập tên phòng"
+                  placeholder="Vui lòng nhập tên phòng *"
                   Icon={Spellcheck}
                   value={roomName}
                   onChange={(e) => setRoomName(e.target.value)}
@@ -156,31 +160,20 @@ const UpdateRoom = () => {
                 <InputField
                   type="number"
                   name="price"
-                  placeholder="Vui lòng nhập giá phòng"
+                  placeholder="Vui lòng nhập giá phòng *"
                   Icon={AttachMoney}
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
-                <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
-                  <Description className="text-xl text-white mx-2" />
 
-                  <textarea
-                    className="px-3 py-2 outline-none border-2 w-full"
-                    placeholder="Vui lòng nhập mô tả phòng"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    cols="30"
-                    rows="1"
-                  ></textarea>
-                </div>
                 <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
-                  <AccountTree className="text-xl text-white mx-2" />
+                  <KingBed className="text-xl text-white mx-2" />
                   <select
                     value={category}
                     className="px-3 py-2 outline-none border-2 w-full"
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value="">Vui lòng chọn danh mục</option>
+                    <option value="">Vui lòng chọn loại phòng *</option>
                     {categories?.map((category, index) => {
                       return (
                         <option key={index} value={category}>
@@ -190,15 +183,43 @@ const UpdateRoom = () => {
                     })}
                   </select>
                 </div>
+                <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
+                  <Group className="text-xl text-white mx-2" />
+                  <select
+                    className="px-3 py-2 outline-none border-2 w-full"
+                    onChange={(e) => setMaxCount(e.target.value)}
+                  >
+                    <option value="">Vui lòng chọn số khách tối đa *</option>
+                    {maxCountPeople.map((maxCount, index) => {
+                      return (
+                        <option key={index} value={maxCount}>
+                          {maxCount}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
                 <InputField
                   type="number"
                   name="stock"
-                  placeholder="Vui lòng nhập số lượng phòng"
+                  placeholder="Vui lòng nhập số lượng phòng *"
                   Icon={Storage}
                   value={Stock}
                   onChange={(e) => setStock(e.target.value)}
                   min={0}
                 />
+                <div className="bg-primaryBlue rounded-lg overflow-hidden w-full flex justify-start items-center">
+                  <Description className="text-xl text-white mx-2" />
+
+                  <textarea
+                    className="px-3 py-2 outline-none border-2 w-full"
+                    placeholder="Vui lòng nhập mô tả phòng *"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    cols="30"
+                    rows="5"
+                  ></textarea>
+                </div>
                 <div className="w-full flex items-center gap-5">
                   <input
                     className="avatarChoose w-full border-2 rounded-lg "

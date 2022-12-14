@@ -54,7 +54,7 @@ const FilterSlide = ({
           />
         </div>
         <div className="pt-5">
-          <p className="filterHeadingStyle">Giá</p>
+          <p className="filterHeadingStyle">Giá phòng/đêm</p>
           <Slider
             value={price}
             onChange={priceHandler}
@@ -66,7 +66,7 @@ const FilterSlide = ({
 
           <div>
             <p className="filterHeadingStyle pt-5 pb-3 border-b-2 border-primaryBlue/50">
-              Danh mục
+              Loại phòng
             </p>
             <ul>
               {categories.map((category, index) => {
@@ -85,7 +85,7 @@ const FilterSlide = ({
 
           <div>
             <fieldset>
-              <p className="filterHeadingStyle pt-3">Đánh giá từ</p>
+              <p className="filterHeadingStyle pt-3">Đánh giá</p>
               <Slider
                 value={ratings}
                 onChange={(e, newRatings) => setRatings(newRatings)}

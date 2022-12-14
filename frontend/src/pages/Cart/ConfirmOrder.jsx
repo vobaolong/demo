@@ -12,7 +12,7 @@ const ConfirmOrder = () => {
   const { transactionInfo, cartItems } = useSelector((state) => state.cart);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
-  const transactionCharges = subtotal * (1 / 10);
+  const transactionCharges = subtotal * (1 / 20);
 
   const totalPrice = subtotal + transactionCharges;
 

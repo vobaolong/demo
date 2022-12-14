@@ -77,18 +77,23 @@ const Navbar = ({ menuOptions }) => {
           </div>
         </div>
       </div>
-      {toggleSidebar ? (
-        <Slider
-          menuOptions={menuOptions}
-          setCloseToggle={setToggleSidebar}
-          closeToggle={toggleSidebar}
-        />
-      ) : (
-        <Slider
-          menuOptions={menuOptions}
-          setCloseToggle={setToggleSidebar}
-          closeToggle={toggleSidebar}
-        />
+      {`${user?.role}` === "admin" ? null : `${user?.role}` ===
+        "admin" ? null : (
+        <>
+          {toggleSidebar ? (
+            <Slider
+              menuOptions={menuOptions}
+              setCloseToggle={setToggleSidebar}
+              closeToggle={toggleSidebar}
+            />
+          ) : (
+            <Slider
+              menuOptions={menuOptions}
+              setCloseToggle={setToggleSidebar}
+              closeToggle={toggleSidebar}
+            />
+          )}
+        </>
       )}
     </>
   );
